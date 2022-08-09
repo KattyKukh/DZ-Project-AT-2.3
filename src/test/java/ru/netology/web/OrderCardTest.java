@@ -13,7 +13,7 @@ public class OrderCardTest {
 
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "/driver/linux/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./driver/linux/chromedriver");
     }
 
     @BeforeEach
@@ -30,16 +30,13 @@ public class OrderCardTest {
         driver.quit();
         driver = null;
     }
-    @Test
-    void shouldOpenSite() {
-        driver.get("http://localhost:9999/");
-    }
+
     @Test
     void shouldSubmitValidData() {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id = name] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id = phone] input")).sendKeys("+79998887766");
-        driver.findElement(By.cssSelector("[data-test-id = argeement]")).click();
+        driver.findElement(By.cssSelector("[data-test-id = agreement]")).click();
         driver.findElement(By.className("button")).click();
         boolean actual = driver.findElement(By.cssSelector("[data-test-id = order-success]")).getText().contains("Ваша заявка успешно отправлена");
         assertTrue(actual);
@@ -50,8 +47,8 @@ public class OrderCardTest {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id = name] input")).sendKeys("Ivan Ivanov");
         driver.findElement(By.className("button")).click();
-        String expected = "rgba(255, 92, 92, 1) !important";
-        String actual = driver.findElement(By.cssSelector(".input_invalid [data-test-id = name] ")).getCssValue("color");
+        String expected = "rgba(255, 92, 92, 1)";
+        String actual = driver.findElement(By.cssSelector("[data-test-id = name] .input__sub")).getCssValue("color");
         assertEquals(expected, actual);
     }
 
@@ -79,8 +76,8 @@ public class OrderCardTest {
         driver.findElement(By.cssSelector("[data-test-id = name] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id = phone] input")).sendKeys("+799988877");
         driver.findElement(By.className("button")).click();
-        String expected = "rgba(255, 92, 92, 1) !important";
-        String actual = driver.findElement(By.cssSelector(".input_invalid [data-test-id = phone]")).getCssValue("color");
+        String expected = "rgba(255, 92, 92, 1)";
+        String actual = driver.findElement(By.cssSelector("[data-test-id = phone] .input__sub")).getCssValue("color");
         assertEquals(expected, actual);
     }
 
@@ -109,10 +106,9 @@ public class OrderCardTest {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id = name] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id = phone] input")).sendKeys("+79998887766");
-        driver.findElement(By.cssSelector("[data-test-id = argeement]")).clear();
         driver.findElement(By.className("button")).click();
-        String expected = "rgba(255, 92, 92, 1) !important";
-        String actual = driver.findElement(By.cssSelector(".input_invalid [data-test-id = argeement]")).getCssValue("color");
+        String expected = "rgba(255, 92, 92, 1)";
+        String actual = driver.findElement(By.cssSelector(".input_invalid .checkbox__text")).getCssValue("color");
         assertEquals(expected, actual);
     }
 }
