@@ -57,7 +57,7 @@ public class OrderCardTest {
         driver.get("http://localhost:9999/");
         driver.findElement(By.cssSelector("[data-test-id = name] input")).sendKeys("Ivan Ivanov");
         driver.findElement(By.className("button")).click();
-        boolean actual = driver.findElement(By.cssSelector("[data-test-id = name] .input__sub")).getText().contains("неверно");
+        boolean actual = driver.findElement(By.cssSelector("[data-test-id = name] .input__sub")).getText().contains("неисправно");
         assertTrue(actual);
     }
 
