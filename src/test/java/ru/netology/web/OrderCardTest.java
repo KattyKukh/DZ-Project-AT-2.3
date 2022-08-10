@@ -87,7 +87,7 @@ public class OrderCardTest {
         driver.findElement(By.cssSelector("[data-test-id = name] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id = phone] input")).sendKeys("+799988877");
         driver.findElement(By.className("button")).click();
-        boolean actual = driver.findElement(By.cssSelector("[data-test-id = phone] .input__sub")).getText().contains("неверно");
+        boolean actual = driver.findElement(By.cssSelector("[data-test-id = phone] .input__sub")).getText().contains("неправильно");
         assertTrue(actual);
     }
 
