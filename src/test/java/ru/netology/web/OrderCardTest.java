@@ -19,8 +19,8 @@ public class OrderCardTest {
     @BeforeEach
     void setupTest() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--headless");
         driver = new ChromeDriver();
     }
